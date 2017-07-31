@@ -1,0 +1,4 @@
+{
+  "httpsPort": "HTTPS_PORT",
+  "httpPort": "HTTP_PORT"
+}

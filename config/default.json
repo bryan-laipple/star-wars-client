@@ -1,0 +1,5 @@
+{
+  "httpsPort": null,
+  "httpPort": "8000",
+  "loggingRequests": false
+}
