@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
   template:
   `
     <md-toolbar color="primary">
-      <button md-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon> View</button>
+      <button md-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon> List</button>
     </md-toolbar>
     
     <md-menu #appMenu="mdMenu">
