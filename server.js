@@ -70,6 +70,10 @@ app.use(preCompressedAssets(/(\.html|\.js|\.css)$/, distDir));
 app.use(compression());
 app.use(logRequest);
 app.use('/', express.static(distDir));
+app.get('*', (req, res) => {
+  // re-write for Angular routing magic
+  res.sendFile(`${distDir}/index.html`);
+});
 
 init().then(() => {
   startHttp();

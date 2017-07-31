@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 import {ListComponent} from './list/list.component';
 import {AppRoutingModule} from './app-routing.module';
 import { DetailsComponent } from './details/details.component';
+import {ApiService} from './api.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { DetailsComponent } from './details/details.component';
     MdIconModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

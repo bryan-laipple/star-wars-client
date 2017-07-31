@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router, Params} from '@angular/router';
+import {ApiService} from '../api.service';
 
 @Component({
   selector: 'sw-details',
@@ -40,7 +41,8 @@ export class DetailsComponent implements OnInit {
   it: any;
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private service: ApiService) {
   }
 
   ngOnInit() {
@@ -51,7 +53,8 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  update(type: string, id: number) {
+  update(type: string, id: string) {
+    //this.service.getDetails(type, id).subscribe(data => {});
     this.it = {
       id: id,
       avatar: 'http://lorempixel.com/50/50/?id=' + id,

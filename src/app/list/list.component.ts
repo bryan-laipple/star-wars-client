@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ApiService} from '../api.service';
 
 @Component({
   selector: 'sw-list',
@@ -55,7 +56,8 @@ export class ListComponent implements OnInit {
   many: any[];
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private service: ApiService) {
   }
 
   ngOnInit() {
@@ -70,6 +72,7 @@ export class ListComponent implements OnInit {
   }
 
   update(type: string) {
+    //this.service.getList(type).subscribe(data => {});
     // dummy data
     const loremNamsum = [
       'Donec quis dolor in leo consectetur vulputate sed ac nunc.',
