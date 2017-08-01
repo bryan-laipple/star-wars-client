@@ -7,19 +7,22 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApiService {
+  baseUrl: string;
 
   constructor(private http: Http) {
+    this.baseUrl = 'http://localhost:8080';
   }
 
   getDetails(type: string, id: string): Observable<any> {
-    return this.http.get(`/api/${type}/${id}`)
+    return this.http.get(`${this.baseUrl}/${type}/${id}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
   getList(type: string, page?: number): Observable<any> {
     page = page || 1;
-    return this.http.get(`/api/${type}/?page=${page}`)
+    // TODO pagination
+    return this.http.get(`${this.baseUrl}/${type}?page=${page}`)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }

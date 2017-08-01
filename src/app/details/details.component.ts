@@ -54,14 +54,15 @@ export class DetailsComponent implements OnInit {
   }
 
   update(type: string, id: string) {
-    //this.service.getDetails(type, id).subscribe(data => {});
-    this.it = {
-      id: id,
-      avatar: 'http://lorempixel.com/50/50/?id=' + id,
-      image: 'http://lorempixel.com/400/400/?id=' + id,
-      name: 'My name',
-      content: 'Duis laoreet consequat fermentum. Sed finibus tempor sapien sit amet sollicitudin. Suspendisse vestibulum lacus imperdiet arcu venenatis, non convallis neque faucibus. Donec hendrerit ultricies enim vitae pulvinar. Phasellus ullamcorper ultrices dui, ut imperdiet ipsum pretium a. Curabitur laoreet, lectus nec laoreet convallis, erat tellus rhoncus enim, nec rutrum lorem enim quis ipsum. Sed eleifend commodo orci ac posuere. Etiam commodo massa nisl, ac bibendum felis imperdiet non. Fusce purus ligula, faucibus at felis ut, consequat congue urna. Sed rutrum urna in erat dignissim consectetur.'
-    }
+    this.service.getDetails(type, id).subscribe(data => {
+      this.it = {
+        id: data.Id,
+        avatar: data.Avatar,
+        name: data.Name,
+        image: data.Image,
+        content: data.Content
+      }
+    });
   }
 
 }
