@@ -10,7 +10,8 @@ export class ApiService {
   baseUrl: string;
 
   constructor(private http: Http) {
-    this.baseUrl = 'http://localhost:8080';
+    // this.baseUrl = 'http://localhost:8080/api';
+    this.baseUrl = '/api';
   }
 
   getDetails(type: string, id: string): Observable<any> {
