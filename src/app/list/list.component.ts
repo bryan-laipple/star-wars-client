@@ -73,15 +73,16 @@ export class ListComponent implements OnInit {
 
   update(type: string) {
     this.service.getList(type).subscribe(data => {
-      this.many = [];
+      const updated = [];
       const key = Object.keys(data)[0];
-      data[key].forEach(c => {
-        this.many.push({
-          id: c.Id,
-          avatar: c.Avatar,
-          name: c.Name
+      data[key].forEach(o => {
+        updated.push({
+          id: o.id,
+          avatar: o.avatar,
+          name: o.name || o.title
         })
-      })
+      });
+      this.many = updated;
     });
   }
 

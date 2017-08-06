@@ -11,6 +11,7 @@ export class ApiService {
 
   constructor(private http: Http) {
     // this.baseUrl = 'http://localhost:8080/api';
+    // this.baseUrl = 'http://sw.dabblr.io/api';
     this.baseUrl = '/api';
   }
 

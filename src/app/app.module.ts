@@ -10,12 +10,14 @@ import {ListComponent} from './list/list.component';
 import {AppRoutingModule} from './app-routing.module';
 import { DetailsComponent } from './details/details.component';
 import {ApiService} from './api.service';
+import { SummaryPipe } from './summary.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    SummaryPipe
   ],
   imports: [
     BrowserModule,

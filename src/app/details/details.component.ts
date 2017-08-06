@@ -10,15 +10,13 @@ import {ApiService} from '../api.service';
       <md-card-header>
         <img md-card-avatar [src]="it.avatar">
         <md-card-title>{{ it.name }}</md-card-title>
-        <md-card-subtitle>{{ it.id }}</md-card-subtitle>
+        <md-card-subtitle>id: {{ it.id }}</md-card-subtitle>
       </md-card-header>
       <div md-card-image>
         <img class="content-image" [src]="it.image">
       </div>
       <md-card-content>
-        <p>
-          {{ it.content }}
-        </p>
+        <pre>{{ it.data | summary }}</pre>
       </md-card-content>
       <md-card-actions>
         <button md-button>LIKE</button>
@@ -31,14 +29,19 @@ import {ApiService} from '../api.service';
     .content-image {
       display: block;
       width: 400px;
-      height: 400px;
       margin: 0 auto;
     }
   `
   ]
 })
 export class DetailsComponent implements OnInit {
-  it: any;
+  it = {
+    id: '',
+    avatar: '',
+    name: '',
+    image: '',
+    data: {}
+  };
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -56,13 +59,12 @@ export class DetailsComponent implements OnInit {
   update(type: string, id: string) {
     this.service.getDetails(type, id).subscribe(data => {
       this.it = {
-        id: data.Id,
-        avatar: data.Avatar,
-        name: data.Name,
-        image: data.Image,
-        content: data.Content
+        id: data.id,
+        avatar: data.avatar,
+        name: data.name || data.title,
+        image: `${data.image}/revision/latest/scale-to-width-down/400`,
+        data: data
       }
     });
   }
-
 }
