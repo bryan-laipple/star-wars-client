@@ -10,7 +10,9 @@ import {ApiService} from '../api.service';
       <md-card-header>
         <img md-card-avatar [src]="it.avatar">
         <md-card-title>{{ it.name }}</md-card-title>
-        <md-card-subtitle>id: {{ it.id }}</md-card-subtitle>
+        <md-card-subtitle>
+          <a class="mat-card-subtitle" target="_blank" [href]="it.wiki?.href">{{ it.wiki?.href }}</a>
+        </md-card-subtitle>
       </md-card-header>
       <div md-card-image>
         <img class="content-image" [src]="it.image">
@@ -40,6 +42,7 @@ export class DetailsComponent implements OnInit {
     avatar: '',
     name: '',
     image: '',
+    wiki: '',
     data: {}
   };
 
@@ -60,11 +63,17 @@ export class DetailsComponent implements OnInit {
     this.service.getDetails(type, id).subscribe(data => {
       this.it = {
         id: data.id,
-        avatar: data.avatar,
+        avatar: '/assets/Wiki-shrinkable.png',
         name: data.name || data.title,
         image: `${data.image}/revision/latest/scale-to-width-down/400`,
+        wiki: this.findWikiLink(data),
         data: data
       }
     });
+  }
+
+  findWikiLink(data: any) {
+    let links = data.links || [];
+    return links.find(l => l.rel.toLowerCase() == 'wookieepedia')
   }
 }

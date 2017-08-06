@@ -30,6 +30,8 @@ import {ApiService} from '../api.service';
     }
     
     md-list-item img {
+      margin-left: 5px;
+      margin-right: 5px;
       width: 50px;
       height: 50px;
       border-radius: 50%;
