@@ -1,29 +1,31 @@
-# StarWarsClient
+# Star Wars DB Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
+The Star Wars DB Client is a small *(really small)* front-end application built using [Angular 4](https://angular.io) and leveraging [Angular Material](https://material.angular.io/) components.
 
-## Development server
+The client communicates with a RESTful API server found in [another repo](https://github.com/bryan-laipple/star-wars-server).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was initially populated with the help of the [Angular CLI](https://github.com/angular/angular-cli) tool.
 
-## Code scaffolding
+## Running in development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build
+## Deployment
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Two scripts provide the ability to deploy to AWS.  One for EC2 and the other for S3.
+ 
+### Dockerized server
 
-## Running unit tests
+The **`deploy-to-aws-ecs.sh`** script builds a Docker image that runs [Express](http://expressjs.com/) to serve the web-app.  The image is tagged and pushed to AWS ECR.  An ECS task definition is updated and corresponding service is modifed to use this new task definition.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Initial setup of the ECR repository, ECS cluster, task definition and service are necessary before running the deploy script.
 
-## Running end-to-end tests
+### Letting S3 host it
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+The **`deploy-to-aws-s3.sh`** script builds the web resources and assets then pushes them to an S3 bucket setup for web hosting.
 
-## Further help
+Similar to the Dockerized deployment solution, AWS S3 must [configured](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html) to host the content before running the deploy script.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Disclosure
 
+I do not take any credit for the actual content served through the API.  The data and images have been provided/stolen from the [Star Wars API](http://swapi.co/) as well as [Wookieepedia](http://starwars.wikia.com/wiki/Main_Page).
