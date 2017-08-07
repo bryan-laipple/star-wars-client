@@ -42,7 +42,7 @@ export class DetailsComponent implements OnInit {
     avatar: '',
     name: '',
     image: '',
-    wiki: '',
+    wiki: {href: ''},
     data: {}
   };
 

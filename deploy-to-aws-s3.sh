@@ -13,12 +13,11 @@
 bucket=$1
 profile=${2:-default}
 
-# build
-npm install && npm run build:prod
-
 # TODO potentially gzip ./dist/*.js and others, rename to remove .gz, and set --content-encoding as gzip in bucket
 
-# sync the dist dir first with .js and .css resources, then assets, followed by anything else
-aws --profile ${profile} s3 sync ./dist s3://${bucket} --exclude "*" --include "*.js" --include "*.css"
-aws --profile ${profile} s3 sync ./dist s3://${bucket} --exclude "*" --include "assets/*"
+# build then sync the dist dir first with .js and .css resources, then assets, followed by anything else
+npm install && \
+npm run build:prod && \
+aws --profile ${profile} s3 sync ./dist s3://${bucket} --exclude "*" --include "*.js" --include "*.css" && \
+aws --profile ${profile} s3 sync ./dist s3://${bucket} --exclude "*" --include "assets/*" && \
 aws --profile ${profile} s3 sync ./dist s3://${bucket}
