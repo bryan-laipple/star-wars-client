@@ -30,8 +30,22 @@ import {ApiService} from '../api.service';
   `
     .content-image {
       display: block;
-      width: 400px;
       margin: 0 auto;
+    }
+    @media (min-width: 320px) {
+      .content-image {
+        width: 300px;
+      }
+    }
+    @media (min-width: 480px) {
+      .content-image {
+        width: 400px;
+      }
+    }
+    @media (min-width: 768px) {
+      .content-image {
+        width: 500px;
+      }
     }
   `
   ]
@@ -65,7 +79,7 @@ export class DetailsComponent implements OnInit {
         id: data.id,
         avatar: '/assets/Wiki-shrinkable.png',
         name: data.name || data.title,
-        image: `${data.image}/revision/latest/scale-to-width-down/400`,
+        image: `${data.image}/revision/latest/scale-to-width-down/500`,
         wiki: this.findWikiLink(data),
         data: data
       }
